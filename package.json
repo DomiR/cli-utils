@@ -1,6 +1,6 @@
 {
 	"name": "@domir/cli-tools",
-	"version": "1.0.0",
+	"version": "1.0.2",
 	"description": "",
 	"main": "build/index.js",
 	"types": "build/index.d.ts",
@@ -15,10 +15,10 @@
 		"Readme.md"
 	],
 	"dependencies": {
-		"chalk": "^2.4.2",
+		"chalk": "^3.0.0",
 		"greytape": "^0.6.1",
-		"ora": "^3.4.0",
-		"typescript": "^3.5.3"
+		"ora": "^4.0.3",
+		"typescript": "^3.7.5"
 	},
 	"devDependencies": {}
 }

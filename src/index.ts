@@ -15,7 +15,7 @@ import ora from 'ora';
  * @param message
  */
 export function log(message: string) {
-	console.log(`${chalk.white('»')}  ${chalk.gray(message)}`);
+	console.log(`${chalk.white('»')}  ${chalk.dim(message)}`);
 }
 
 /**
@@ -42,7 +42,7 @@ export function error(err: Error | string) {
  * @param fn
  */
 export async function spinWhile<T>(text: string, fn: () => Promise<T>) {
-	const spinner = ora(' ' + chalk.gray(text)).start();
+	const spinner = ora(' ' + chalk.dim(text)).start();
 	try {
 		return await fn();
 	} finally {
