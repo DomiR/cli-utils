@@ -5,10 +5,11 @@
  * @version 0.0.1
  */
 
-import chalk from 'chalk';
+import chalkNice from 'chalk';
 import ora from 'ora';
 
 // extracted from https://github.com/jeffijoe/typesync/blob/master/src/cli-util.ts
+export const chalk = chalkNice;
 
 /**
  * Like regular console.log, but better.
@@ -23,7 +24,7 @@ export function log(message: string) {
  * @param text
  */
 export function success(text: string) {
-	console.log(`${chalk.green('✔')}  ${chalk.white(text)}`);
+	console.log(`${chalk.green('✔')}  ${chalk.white.bold(text)}`);
 }
 
 /**
@@ -33,7 +34,7 @@ export function success(text: string) {
 export function error(err: Error | string) {
 	const msg = err instanceof Error ? err.message : err;
 	const stack = err instanceof Error ? `\nStack:\n${err.stack}` : '';
-	console.log(`${chalk.red('✖')}  ${chalk.bgRed(chalk.white(msg))}${stack}`);
+	console.log(`${chalkNice.red('✖')}  ${chalkNice.bgRed(chalkNice.white(msg))}${stack}`);
 }
 
 /**
@@ -42,7 +43,7 @@ export function error(err: Error | string) {
  * @param fn
  */
 export async function spinWhile<T>(text: string, fn: () => Promise<T>) {
-	const spinner = ora(' ' + chalk.dim(text)).start();
+	const spinner = (ora(' ' + chalkNice.dim(text)) as any).start();
 	try {
 		return await fn();
 	} finally {
