@@ -5,18 +5,18 @@
  * @version 0.0.1
  */
 
-import chalkNice from 'chalk';
+import * as coloretteNice from 'colorette';
 import ora from 'ora';
 
 // extracted from https://github.com/jeffijoe/typesync/blob/master/src/cli-util.ts
-export const chalk = chalkNice;
+export const colorette = coloretteNice;
 
 /**
  * Like regular console.log, but better.
  * @param message
  */
 export function log(message: string) {
-	console.log(`${chalk.white('»')}  ${chalk.dim(message)}`);
+	console.log(`${colorette.white('»')}  ${colorette.dim(message)}`);
 }
 
 /**
@@ -24,7 +24,7 @@ export function log(message: string) {
  * @param text
  */
 export function success(text: string) {
-	console.log(`${chalk.green('✔')}  ${chalk.white.bold(text)}`);
+	console.log(`${colorette.green('✔')}  ${colorette.white(colorette.bold(text))}`);
 }
 
 /**
@@ -34,7 +34,9 @@ export function success(text: string) {
 export function error(err: Error | string) {
 	const msg = err instanceof Error ? err.message : err;
 	const stack = err instanceof Error ? `\nStack:\n${err.stack}` : '';
-	console.log(`${chalkNice.red('✖')}  ${chalkNice.bgRed(chalkNice.white(msg))}${stack}`);
+	console.log(
+		`${coloretteNice.red('✖')}  ${coloretteNice.bgRed(coloretteNice.white(msg))}${stack}`
+	);
 }
 
 /**
@@ -43,7 +45,7 @@ export function error(err: Error | string) {
  * @param fn
  */
 export async function spinWhile<T>(text: string, fn: () => Promise<T>) {
-	const spinner = (ora(' ' + chalkNice.dim(text)) as any).start();
+	const spinner = (ora(' ' + coloretteNice.dim(text)) as any).start();
 	try {
 		return await fn();
 	} finally {
